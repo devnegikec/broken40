@@ -2,12 +2,10 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import type { Expense, Investment, Savings } from '../lib/types';
 import {
-  DollarSign,
   TrendingUp,
   PiggyBank,
   ArrowUpRight,
   ArrowDownRight,
-  Receipt,
 } from 'lucide-react';
 import {
   BarChart,
