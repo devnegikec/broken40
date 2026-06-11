@@ -54,12 +54,19 @@ ALTER TABLE public.investments ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.savings ENABLE ROW LEVEL SECURITY;
 
 -- RLS Policies: Users can only access their own data
+-- Each policy needs BOTH USING (for reading existing rows) AND WITH CHECK (for inserting/updating new rows)
 CREATE POLICY "Users can manage their own expenses" ON public.expenses
-  FOR ALL USING (auth.uid() = user_id);
+  FOR ALL
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
 
 CREATE POLICY "Users can manage their own investments" ON public.investments
-  FOR ALL USING (auth.uid() = user_id);
+  FOR ALL
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
 
 CREATE POLICY "Users can manage their own savings" ON public.savings
-  FOR ALL USING (auth.uid() = user_id);
+  FOR ALL
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
 
